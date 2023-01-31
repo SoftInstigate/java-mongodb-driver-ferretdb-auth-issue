@@ -1,6 +1,6 @@
-# Java Driver FerretDb Auth Issue
+# Java MongoDbDriver FerretDb Auth Issue
 
-This is a reproducer of an issue with the MongoDb Java Driver authentication with FerretDb.
+This is a reproducer of an issue with the MongoDb Java Driver authentication with FerretDb 0.9.0.
 
 ## 1 - install sdkman
 
