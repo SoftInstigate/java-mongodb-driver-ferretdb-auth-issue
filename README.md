@@ -1,0 +1,39 @@
+# Java Driver FerretDb Auth Issue
+
+This is a reproducer of an issue with the MongoDb Java Driver authentication with FerretDb.
+
+## 1 - install sdkman
+
+This helps installing java!
+
+```bash
+$ curl -s "https://get.sdkman.io" | bash
+```
+
+## 2 - install java 17
+
+```bash
+$ java install java 17.0.6-tem
+```
+
+## 3 - start FerretDb
+
+```bash
+$ docker compose up
+```
+
+## 4 - Run the test
+
+```bash
+/mvnw clean test
+```
+
+## Current error
+
+The error comes from `SaslAuthenticator` class of the java driver that tries to get the `conversationId` (a BsonInt32) from the Sasl response but does not find it!:
+
+```
+com.mongodb.MongoSecurityException: Exception authenticating MongoCredential{mechanism=PLAIN, userName='username', source='$external', password=<hidden>, mechanismProperties=<hidden>}
+....
+Caused by: org.bson.BsonInvalidOperationException: Document does not contain key conversationId
+```
