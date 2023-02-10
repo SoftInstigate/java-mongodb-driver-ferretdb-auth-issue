@@ -21,4 +21,17 @@ public class ReproducerTest {
             Assert.fail();
         }
     }
+
+    @Test
+    public void checkCreateCollection() {
+        try {
+            var MONGO_URI = "mongodb://username:password@localhost:27017/?authMechanism=PLAIN";
+            var mclient = MongoClients.create(MONGO_URI);
+
+            mclient.getDatabase("foo").createCollection("bar");
+        } catch(Throwable t) {
+            t.printStackTrace();
+            Assert.fail();
+        }
+    }
 }

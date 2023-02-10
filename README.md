@@ -25,10 +25,18 @@ $ docker compose up
 ## 4 - Run the test
 
 ```bash
-/mvnw clean test
+$ ./mvnw clean test
 ```
 
-## Current error
+## Error with MongoDatabase.createCollection()
+
+`MongoDatabase.createCollection()` fails with following message (even if not creating a _capped_ collection)
+
+```
+Command failed with error 238 (NotImplemented): 'create: support for field "capped" is not implemented yet' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "create: support for field \"capped\" is not implemented yet", "code": 238, "codeName": "NotImplemented"}
+```
+
+## Error with authentication (FIXED)
 
 The error comes from `SaslAuthenticator` class of the java driver that tries to get the `conversationId` (a BsonInt32) from the Sasl response but does not find it!:
 
